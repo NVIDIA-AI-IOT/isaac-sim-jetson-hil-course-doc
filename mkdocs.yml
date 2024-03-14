@@ -1,0 +1,82 @@
+site_name: Isaac SIM Jetson HIL Course Doc
+theme:
+    name: "material"
+    favicon: images/m48-document-support-guide-256px-wht.png
+    logo: images/m48-document-support-guide-256px-wht.png
+    font: 
+      text: Incosolata
+    palette:
+      - scheme: nvgreen
+        toggle:
+            icon: material/toggle-switch-off-outline
+            name: Switch to dark mode
+      - scheme: slate
+        toggle:
+            icon: material/toggle-switch
+            name: Switch to light mode
+    features:
+       - navigation.indexes
+       - navigation.footer
+       - content.tabs.link
+       - content.code.copy
+
+repo_url: https://gitlab-master.nvidia.com/jetson/isaac-sim-jetson-hil-course-doc/
+
+plugins:
+  - search
+use_directory_urls: false
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - def_list
+  - md_in_html
+  - tables
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true 
+
+extra_css:
+  - css/colors.css
+
+nav:
+
+  - Home: index.md
+  - 1. Isaac Sim :
+    - isaac-sim/index.md
+    - Launch:                     isaac-sim/isaac-sim_01.md
+    - Create an Environment:      isaac-sim/isaac-sim_02.md
+    - Load Assets:                isaac-sim/isaac-sim_03.md
+    - Build Graph to drive robot: isaac-sim/isaac-sim_04.md
+    - Build Graph for camera:     isaac-sim/isaac-sim_05.md
+  - 2. Isaac ROS : isaac-ros.md
+  - 3. Hardware-in-Loop: hardware-in-loop.md
+  - 4. Next-gen AI Integration: nextgen-ai.md
+  - FAQ: faq.md
+  - Troubleshoot: troubleshoot.md
+  - Setup: 
+    - Lab setup: setup_lab.md
+    - PC setup: setup_pc.md
+    - Jetson setup: setup_jetson.md
+  - References: references.md
+
+extra:
+  analytics:
+    provider: google
+    property: 
+  
