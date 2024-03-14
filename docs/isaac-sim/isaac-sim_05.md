@@ -163,7 +163,7 @@ Verify the Action Graph by viewing the simulated world through robots cameras us
 
         ![alt text](../images/image-63.png)
 
-    <iframe src="https://drive.google.com/file/d/1wVos4xQL6gMF7347n7tbNYP1BCv9KV2B/preview" width="960" height="480" allow="autoplay"></iframe>
+    <iframe width="960" height="480" src="https://www.youtube.com/embed/uU6wbG5WZVQ?si=fJiLO4P5SFr0D7iw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     
     [Next](../docs/../isaac-ros.md){ .md-button .md-button--primary }
 
@@ -202,6 +202,5 @@ Verify the Action Graph by viewing the simulated world through robots cameras us
    
         You should be able to control the robot using the teleop widget while viewing the images from robot cameras in Foxglove.
 
-    <iframe src="https://drive.google.com/file/d/1MTdF5NmBfBImGVSsQxGCoS-5JxuV3Xgx/preview" width="960" height="480" allow="autoplay"></iframe>
-
+    <iframe width="960" height="480" src="https://www.youtube.com/embed/B9BuygSVr7Y?si=UKUHUItaf4xYk-Vd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     [Next](../docs/../isaac-ros.md){ .md-button .md-button--primary }

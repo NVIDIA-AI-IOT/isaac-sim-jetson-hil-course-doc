@@ -109,7 +109,7 @@ Verify the ActionGraph by controlling the robot from ROS 2 side.
 
     ![alt text](../images/image-45.png)
 
-    <iframe src="https://drive.google.com/file/d/1W-RfxQDQeGI7JXvUP1OyhLiN-xNLpmBU/preview" width="960" height="480" allow="autoplay"></iframe>
+    <iframe width="960" height="480" src="https://www.youtube.com/embed/sLlmDhKcu1w?si=jHTRZcrh1d2e7Ill" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
     [Next](./isaac-sim_05.md){ .md-button .md-button--primary }
 
