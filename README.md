@@ -7,8 +7,7 @@ Document generation status: [![example workflow](https://github.com/NVIDIA-AI-IO
 This repo is to host the course documentation for Isaac Sim Jetson HIL hands-on course.
 
 The auto generated documentation is hosted on the following, using their CI/CD feature to automatically generate/update the HTML documentation site upon new commit:
-  - (Internal) [GitLab Pages site](https://jetson.gitlab-master-pages.nvidia.com/isaac-sim-jetson-hil-course-doc/)
-  - (**Not yet published**) GitHub Pages site
+  - [https://nvidia-ai-iot.github.io/isaac-sim-jetson-hil-course-doc/](https://nvidia-ai-iot.github.io/isaac-sim-jetson-hil-course-doc/)
 
 ## How to use this repo locally
 
