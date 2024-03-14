@@ -1,10 +1,10 @@
 # Isaac SIM Jetson HIL Course Doc
 
-Document generation status: [![pipeline status](https://gitlab-master.nvidia.com/jetson/isaac-sim-jetson-hil-course-doc/badges/main/pipeline.svg)](https://gitlab-master.nvidia.com/jetson/isaac-sim-jetson-hil-course-doc/-/commits/main)
+Document generation status: [![example workflow](https://github.com/NVIDIA-AI-IOT/isaac-sim-jetson-hil-course-doc/actions/workflows/ci.yml/badge.svg)](https://github.com/NVIDIA-AI-IOT/isaac-sim-jetson-hil-course-doc/actions)
 
 # About this repo
 
-This repo is to host {}.
+This repo is to host the course documentation for Isaac Sim Jetson HIL hands-on course.
 
 The auto generated documentation is hosted on the following, using their CI/CD feature to automatically generate/update the HTML documentation site upon new commit:
   - (Internal) [GitLab Pages site](https://jetson.gitlab-master-pages.nvidia.com/isaac-sim-jetson-hil-course-doc/)
