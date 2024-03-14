@@ -1,6 +1,7 @@
 site_name: Isaac SIM Jetson HIL Course Doc
 theme:
     name: "material"
+    custom_dir: docs/overrides
     favicon: images/m48-document-support-guide-256px-wht.png
     logo: images/m48-document-support-guide-256px-wht.png
     font: 
@@ -19,8 +20,9 @@ theme:
        - navigation.footer
        - content.tabs.link
        - content.code.copy
+       - announce.dismiss
 
-repo_url: https://gitlab-master.nvidia.com/jetson/isaac-sim-jetson-hil-course-doc/
+repo_url: https://github.com/NVIDIA-AI-IOT/isaac-sim-jetson-hil-course-doc
 
 plugins:
   - search
