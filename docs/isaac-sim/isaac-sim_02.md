@@ -66,3 +66,9 @@
         - Mouse Right-click and ++w++ ++a++ ++s++ ++d++ to move forward/left/back/right, ++q++ ++e++ to move up/down
         - Copy an object position by going to "Transform" tab
     [Next](./isaac-sim_03.md){ .md-button .md-button--primary }
+
+!!! info
+
+    If you find yourself lost in the stage, just click on an item in the **Stage** tab, a press ++f++ to focus on it.
+
+    ![](../images/focus.gif)

@@ -8,6 +8,17 @@
 
 NVIDIA Omniverse™ Isaac Sim is a robotics simulation toolkit on the NVIDIA Omniverse™ platform, offering tools for creating virtual robotic environments and experiments. It supports navigation, manipulation via ROS/ROS2, and simulates sensor data like RGB-D, Lidar, and IMU for computer vision applications, including domain randomization and ground-truth labeling.
 
+!!! note
+
+    Through out the following exercises, you may see this warning dialog when you open our pre-scripted USD file.<br>
+    You can just press "**Yes**" to dismiss.
+
+    ![](../images/warning.jpg)
+
+    Also, when you close the USD file, press "**Don't Save**" so that you get to re-use the provided USD files in the way later.
+
+    ![](../images/dont_save.jpg)
+
 ## Exercise composition
 
 Hands-on session on Isaac Sim is composed of 5 exercises.
