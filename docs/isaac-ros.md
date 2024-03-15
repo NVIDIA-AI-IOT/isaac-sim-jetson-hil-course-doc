@@ -49,7 +49,7 @@ Before you begin, verify that your device has sufficient storage available. We r
     isaac-ros-container
     ```
 
-    !!! tips
+    !!! tip
 
         After you type `isaac` in the terminal, just hit ++tab++ then the rest gets completed, so you just need to type ++enter++ after that to execute.
 
