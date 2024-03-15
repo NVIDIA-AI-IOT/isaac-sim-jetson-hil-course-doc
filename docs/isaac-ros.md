@@ -43,30 +43,41 @@ We strongly recommend setting up your developer environment using Isaac ROS Dev 
 
 Before you begin, verify that your device has sufficient storage available. We recommend at least 30 GB, which likely necessitates an SSD if running on Jetson platforms.
 
-1. Ensure that you have established a ROS 2 workspace for experimenting with Isaac ROS, and set the `ISAAC_ROS_WS` environmental variable to point to your ROS 2 workspace directory, following the initial setup instructions for Isaac ROS previously mentioned - [Link](https://nvidia-isaac-ros.github.io/getting_started/dev_env_setup.html)
+1. [ :simple-windowsterminal:{ .nvgreen } Terminal 1 ] Start the Isaac ROS dev container by executing a simple alias command 
 
     ```bash
-    echo $ISAAC_ROS_WS
+    isaac-ros-container
     ```
 
-2. [ :simple-windowsterminal:{ .nvgreen } Terminal 1 ] Launch the Docker container using the `run_dev.sh` script:
+    !!! tips
 
-    ```bash
-    cd ${ISAAC_ROS_WS}/src/isaac_ros_common && \
-    ./scripts/run_dev.sh ${ISAAC_ROS_WS}
-    ```
+        After you type `isaac` in the terminal, just hit ++tab++ then the rest gets completed, so you just need to type ++enter++ after that to execute.
 
-3. [ :simple-windowsterminal:{ .nvgreen } Terminal 1 ] Once in the Isaac ROS dev container, source the workspace:
+    ??? info "In case the alias command is not available"
+
+        1. Ensure that you have established a ROS 2 workspace for experimenting with Isaac ROS, and set the `ISAAC_ROS_WS` environmental variable to point to your ROS 2 workspace directory, following the initial setup instructions for Isaac ROS previously mentioned - [Link](https://nvidia-isaac-ros.github.io/getting_started/dev_env_setup.html)
+
+            ```bash
+            echo $ISAAC_ROS_WS
+            ```
+
+        1. Launch the Docker container using the `run_dev.sh` script:
+
+            ```bash
+            cd ${ISAAC_ROS_WS}/src/isaac_ros_common && \
+            ./scripts/run_dev.sh ${ISAAC_ROS_WS}
+            ```
+
+4. [ :simple-windowsterminal:{ .nvgreen } Terminal 1 ] Once in the Isaac ROS dev container, source the workspace:
 
     ```bash
     source /workspaces/isaac_ros-dev/install/setup.bash
     ```
 
-4. [ :simple-windowsterminal:{ .nvdarkgreen } Terminal 2 ] When you need the 2nd terminal attached to the container, run the `run_dev.sh` script again:
+5. [ :simple-windowsterminal:{ .nvdarkgreen } Terminal 2 ] When you need the 2nd terminal attached to the container, run the alias script again:
 
     ```bash
-    cd ${ISAAC_ROS_WS}/src/isaac_ros_common && \
-    ./scripts/run_dev.sh ${ISAAC_ROS_WS}
+    isaac-ros-container
     ```
 
     Once in the Isaac ROS dev container, again source the workspace:
@@ -81,7 +92,7 @@ Before you begin, verify that your device has sufficient storage available. We r
 
     :fontawesome-solid-book:{ .book-blue-note } *Official Isaac ROS Documentation - [**Isaac ROS Nvblox**](https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_nvblox/index.html)*
 
-### About NVblox
+### About Nvblox
 
 Isaac ROS Nvblox contains ROS 2 packages for 3D reconstruction and cost maps for navigation. The Nvblox node processes depth and pose to reconstruct a 3D scene in real-time. It also outputs a 2D costmap for [Nav2](https://github.com/ros-planning/navigation2).
 
