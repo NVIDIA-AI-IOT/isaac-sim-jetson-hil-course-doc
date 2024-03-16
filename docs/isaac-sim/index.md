@@ -25,13 +25,13 @@ Hands-on session on Isaac Sim is composed of 5 exercises.
 
 Some exercises are designed to be built upon the result of previous exercise.<br> However we provide a pre-configured USD file at each exercise completion, so you can skip some exercise.
 
-### Exercise 1.1 Launch Isaac Sim
+### Exercise 1.1 Launch Isaac Sim [==Hands-on==]
 
 We introduce two ways to launch Isaac Sim.
 
 [:fontawesome-solid-circle-arrow-right: Go to the exercise](./isaac-sim_01.md) 
 
-### Exercise 1.2 Create an Environment in Isaac Sim
+### Exercise 1.2 Create an Environment in Isaac Sim [==Hands-on==]
 
 We learn how we can build an environment from scratch using primitives in Isaac Sim as well as using pre-created assets. 
 

@@ -43,15 +43,22 @@ We strongly recommend setting up your developer environment using Isaac ROS Dev 
 
 Before you begin, verify that your device has sufficient storage available. We recommend at least 30 GB, which likely necessitates an SSD if running on Jetson platforms.
 
+!!! note
+
+    For this exercise you will need two terminals open on the jetson and you can arrange them in the following manner
+
+    ![alt text](images/.png)
+
+
+
 1. [ :simple-windowsterminal:{ .nvgreen } Terminal 1 ] Start the Isaac ROS dev container by executing a simple alias command 
 
     ```bash
     isaac-ros-container
     ```
 
-    !!! tip
-
-        After you type `isaac` in the terminal, just hit ++tab++ then the rest gets completed, so you just need to type ++enter++ after that to execute.
+    <!-- !!! tip
+        After you type `isaac` in the terminal, just hit ++tab++ then the rest gets completed, so you just need to type ++enter++ after that to execute. -->
 
     ??? info "In case the alias command is not available"
 
