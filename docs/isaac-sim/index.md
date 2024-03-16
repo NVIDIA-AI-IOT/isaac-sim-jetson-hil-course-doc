@@ -41,7 +41,7 @@ We learn how we can build an environment from scratch using primitives in Isaac 
 
 We will learn
 
-- How to add props/assets, place and move them, and view the environment from desired perspectives
+- How to add props/assets, place and move them, and view the environment from desired perspectives [==Hands-on==]
 - How to add people in an environment using `omni.anim.people` extension
 - How to add a robot in the scene using the URDF file
 - How to attach a camera to the robot

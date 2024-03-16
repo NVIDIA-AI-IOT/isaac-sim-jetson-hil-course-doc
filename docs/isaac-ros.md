@@ -47,7 +47,7 @@ Before you begin, verify that your device has sufficient storage available. We r
 
     For this exercise you will need two terminals open on the jetson and you can arrange them in the following manner
 
-    ![alt text](images/.png)
+    ![alt text](images/Isaac-ROS-screen-1.png)
 
 
 
@@ -126,6 +126,6 @@ Isaac ROS Nvblox contains ROS 2 packages for 3D reconstruction and cost maps for
 
     RViz should start showing visualization like the following.
 
-    ![](../images/ildfjal.png)
+    ![](../images/Isaac-ROS-screen-2.png)
 
 [Next](./hardware-in-loop.md){ .md-button .md-button--primary }
