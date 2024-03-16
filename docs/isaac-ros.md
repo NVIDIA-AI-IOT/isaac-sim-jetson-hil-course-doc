@@ -51,14 +51,17 @@ Before you begin, verify that your device has sufficient storage available. We r
 
 
 
-1. [ :simple-windowsterminal:{ .nvgreen } Terminal 1 ] Start the Isaac ROS dev container by executing a simple alias command 
+1. [ :simple-windowsterminal:{ .nvgreen } Terminal 1 ] Start the Isaac ROS dev container by executing the following command
 
     ```bash
-    isaac-ros-container
+    echo $ISAAC_ROS_WS
     ```
-
-    <!-- !!! tip
-        After you type `isaac` in the terminal, just hit ++tab++ then the rest gets completed, so you just need to type ++enter++ after that to execute. -->
+    ```bash
+    cd ${ISAAC_ROS_WS}/src/isaac_ros_common && \
+    ./scripts/run_dev.sh ${ISAAC_ROS_WS}
+    ```
+<!--     !!! tip
+        After you type `isaac` in the terminal, just hit ++tab++ then the rest gets completed, so you just need to type ++enter++ after that to execute.
 
     ??? info "In case the alias command is not available"
 
@@ -73,21 +76,21 @@ Before you begin, verify that your device has sufficient storage available. We r
             ```bash
             cd ${ISAAC_ROS_WS}/src/isaac_ros_common && \
             ./scripts/run_dev.sh ${ISAAC_ROS_WS}
-            ```
-
-4. [ :simple-windowsterminal:{ .nvgreen } Terminal 1 ] Once in the Isaac ROS dev container, source the workspace:
+            ``` -->
+2. [ :simple-windowsterminal:{ .nvgreen } Terminal 1 ] Once in the Isaac ROS dev container, source the workspace:
 
     ```bash
     source /workspaces/isaac_ros-dev/install/setup.bash
     ```
 
-5. [ :simple-windowsterminal:{ .nvdarkgreen } Terminal 2 ] When you need the 2nd terminal attached to the container, run the alias script again:
+3. [ :simple-windowsterminal:{ .nvdarkgreen } Terminal 2 ] When you need the 2nd terminal attached to the container, run this command again:
 
     ```bash
-    isaac-ros-container
+    cd ${ISAAC_ROS_WS}/src/isaac_ros_common && \
+    ./scripts/run_dev.sh ${ISAAC_ROS_WS}
     ```
 
-    Once in the Isaac ROS dev container, again source the workspace:
+4. [ :simple-windowsterminal:{ .nvdarkgreen } Terminal 2 ] Once in the Isaac ROS dev container, again source the workspace:
 
     ```bash
     source /workspaces/isaac_ros-dev/install/setup.bash
