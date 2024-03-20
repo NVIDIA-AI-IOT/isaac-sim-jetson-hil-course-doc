@@ -48,13 +48,13 @@ We will learn
 
 [:fontawesome-solid-circle-arrow-right: Go to the exercise](./isaac-sim_03.md) 
 
-### Exercise 1.4 Build Action Graph to drive a robot
+### Exercise 1.4 Action Graph to drive a robot [==Hands-on==]
 
 We will learn how to construct an Action Graph for driving a robot in the simulator from ROS 2 side.
 
 [:fontawesome-solid-circle-arrow-right: Go to the exercise](./isaac-sim_04.md) 
 
-### Exercise 1.5 Build Action Graph for robot camera
+### Exercise 1.5 Action Graph for robot camera [==Hands-on==]
 
 We will learn how to construct an Action Graph for publishing robot camera images to ROS 2 side.
 
