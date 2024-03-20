@@ -1,0 +1,1361 @@
+<!-- Elements added to main will be displayed on all pages -->
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="isaac-ros.html">
+      
+      
+        <link rel="next" href="nextgen-ai.html">
+      
+      
+      <link rel="icon" href="images/m48-document-support-guide-256px-wht.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
+    
+    
+      
+        <title>3. Hardware-in-Loop - Isaac SIM Jetson HIL Course Doc</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.10ba22f1.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Incosolata:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Incosolata";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="css/colors.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-M34CKH665W"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-M34CKH665W",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-M34CKH665W",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="nvgreen" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hardware-in-loop-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <style>
+    .md-announce a { color: #76b900; text-decoration: underline;}
+    .md-announce a:focus { color: hsl(82, 100%, 72%);  text-decoration: underline; }
+    .md-announce a:hover { color: hsl(82, 100%, 72%); text-decoration: underline;}
+  </style>
+    <div class="md-announce">Check out all the <a href="https://www.nvidia.com/gtc/session-catalog/?tab.allsessions=1700692987788001F1cG&search=&search.productstechnologies=1624481715155007CbY2#/" target="_blank"><b>Jetson related sessions</b></a> at GTC24.</div>
+    
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Isaac SIM Jetson HIL Course Doc" class="md-header__button md-logo" aria-label="Isaac SIM Jetson HIL Course Doc" data-md-component="logo">
+      
+  <img src="images/m48-document-support-guide-256px-wht.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Isaac SIM Jetson HIL Course Doc
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3. Hardware-in-Loop
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="nvgreen" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/NVIDIA-AI-IOT/isaac-sim-jetson-hil-course-doc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Isaac SIM Jetson HIL Course Doc" class="md-nav__button md-logo" aria-label="Isaac SIM Jetson HIL Course Doc" data-md-component="logo">
+      
+  <img src="images/m48-document-support-guide-256px-wht.png" alt="logo">
+
+    </a>
+    Isaac SIM Jetson HIL Course Doc
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/NVIDIA-AI-IOT/isaac-sim-jetson-hil-course-doc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="isaac-sim/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    1. Isaac Sim
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            1. Isaac Sim
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="isaac-sim/isaac-sim_01.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Launch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="isaac-sim/isaac-sim_02.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create an Environment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="isaac-sim/isaac-sim_03.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Load Assets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="isaac-sim/isaac-sim_04.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Graph to drive robot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="isaac-sim/isaac-sim_05.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Graph for camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="isaac-ros.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. Isaac ROS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    3. Hardware-in-Loop
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="hardware-in-loop.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    3. Hardware-in-Loop
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-verify-the-basic-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 1. Verify the basic communication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-verify-the-ros-2-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 2. Verify the ROS 2 communication
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise 2. Verify the ROS 2 communication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-pc-start-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      On PC, start simulation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-jetson-remotely-teleop-the-robot-in-isaac-sim" class="md-nav__link">
+    <span class="md-ellipsis">
+      On Jetson, remotely teleop the robot in Isaac Sim
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3-run-hil-isaac-sim-nvblox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 3. Run HIL - Isaac Sim + Nvblox
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise 3. Run HIL - Isaac Sim + Nvblox">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modify-the-robots-action-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify the robot's Action Graph
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modify the robot's Action Graph">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drive-action-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drive Action Graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera-publisher-action-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Camera Publisher Action Graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-explanation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph Explanation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launch-nvblox-on-jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launch Nvblox on Jetson
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="nextgen-ai.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. Next-gen AI Integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="faq.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="troubleshoot.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshoot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Setup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setup_lab.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setup_pc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PC setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setup_jetson.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jetson setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="references.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-verify-the-basic-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 1. Verify the basic communication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-verify-the-ros-2-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 2. Verify the ROS 2 communication
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise 2. Verify the ROS 2 communication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-pc-start-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      On PC, start simulation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-jetson-remotely-teleop-the-robot-in-isaac-sim" class="md-nav__link">
+    <span class="md-ellipsis">
+      On Jetson, remotely teleop the robot in Isaac Sim
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3-run-hil-isaac-sim-nvblox" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 3. Run HIL - Isaac Sim + Nvblox
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise 3. Run HIL - Isaac Sim + Nvblox">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modify-the-robots-action-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify the robot's Action Graph
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modify the robot's Action Graph">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drive-action-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drive Action Graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera-publisher-action-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Camera Publisher Action Graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-explanation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph Explanation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launch-nvblox-on-jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launch Nvblox on Jetson
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="hardware-in-loop-setup">Hardware-in-Loop setup</h1>
+<p>Isaac Sim can be used to run and test the ROS2 applications. There are two ways we can configure the system.</p>
+<ul>
+<li>Software in the Loop</li>
+<li>Hardware in the Loop</li>
+</ul>
+<p><strong>Software in the Loop (SIL)</strong> refers to a configuration where the software being tested is not running on the target hardware platform. For example, Isaac ROS packages being tested on x86 before deployment on a Jetson device is SIL.</p>
+<p><strong>Hardware in the Loop (HIL)</strong> refers to a configuration where the software is being tested on the target hardware platform. For example, Isaac ROS packages being tested on a Jetson device before deployment is HIL.</p>
+<h2 id="exercise-1-verify-the-basic-communication">Exercise 1. Verify the basic communication</h2>
+<p>We will use ROS 2 to communicate robot information between Jetson and PC.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>For optimal and reliable data communication between Jetson and PC, it is generally ideal to use a wired Ethernet to foam a robust network connection, especially on a moving platform like a robot.</p>
+<p>However for the ease of setup in this lab, Jetson and PC are connected via a USB (Type-A end on PC and USB-C end on Jetson) cable, to form a peer-to-peer, local closed network.</p>
+<p>Jetson, when connected as a device, presents a USB communication device class (CDC) among other classes, effectively forming an "Ethernet over USB" connection between the Jetson and the host PC.</p>
+<p>Jetson assigns the IP address <code>192.168.55.1</code> to itself and assign <code>192.168.55.100</code> to the host side device, so conveniently Jetson is always reachable by the IP address from the host.</p>
+<p><img alt="alt text" src="images/image-64.png" /></p>
+<p>This closed network also helps to accommodate multiple ROS 2 systems in a same room, eliminating the needs of setting different <code>ROS_DOMAIN_ID</code>.</p>
+</div>
+<p>Let's check the IP address on both Jetson and PC to first verify that they can ping each other. </p>
+<ol>
+<li>
+<p>Ensure that both the Jetson and PC are connected on the same network. </p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In the case of our lab, they are foaming a peer-to-peer style local network over the USB Type-A to USB-C cable.</p>
+</div>
+</li>
+<li>
+<p>Check the IP address of each device by using <code>ip addr</code> command on both Jetson and PC, and test if it can reach each other by using <code>ping</code> command.</p>
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>addr
+ping<span class="w"> </span>&lt;other_device_ip&gt;
+</code></pre></div>
+</li>
+</ol>
+<h2 id="exercise-2-verify-the-ros-2-communication">Exercise 2. Verify the ROS 2 communication</h2>
+<h3 id="on-pc-start-simulation"><span class="twemoji ubuntupurple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 6h16v10H4m16 2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4c-1.11 0-2 .89-2 2v10a2 2 0 0 0 2 2H0v2h24v-2h-4Z"/></svg></span> On PC, start simulation</h3>
+<ol>
+<li>
+<p>Open the following file path in Isaac Sim</p>
+<div class="highlight"><pre><span></span><code>/home/nvidia/Desktop/Isaac_ROS_Isaac_SIM_[DLIT61534]/Isaac Sim Assets Pack 1/Assets/Isaac/2023.1.1/Isaac/Environments/Simple_Warehouse/course_env_5.usd
+</code></pre></div>
+<p>or navigate to the environment you have created so far in Isaac Sim.</p>
+</li>
+<li>
+<p>Initiate the simulation in Isaac Sim by clicking the "<strong>Play</strong>" button, activating both the graph and the physics engine.</p>
+</li>
+</ol>
+<h3 id="on-jetson-remotely-teleop-the-robot-in-isaac-sim"><span class="twemoji nvgreen"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 9V7h-2V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2h2v-2h-2v-2h2v-2h-2V9h2m-4 10H4V5h14v14M6 13h5v4H6v-4m6-6h4v3h-4V7M6 7h5v5H6V7m6 4h4v6h-4v-6Z"/></svg></span> On Jetson, remotely teleop the robot in Isaac Sim</h3>
+<ol>
+<li>
+<p>Launch the Isaac ROS dev container suing the <code>run_dev.sh</code> script:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">ISAAC_ROS_WS</span><span class="si">}</span>/src/isaac_ros_common<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+./scripts/run_dev.sh<span class="w"> </span><span class="si">${</span><span class="nv">ISAAC_ROS_WS</span><span class="si">}</span><span class="w"> </span>
+</code></pre></div>
+</li>
+<li>
+<p>Once in the container, source the workspace</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/workspaces/isaac_ros-dev/install/setup.bash
+</code></pre></div>
+</li>
+<li>
+<p>In the ROS-sourced terminal, check that the associated ROS topics exist.</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>topic<span class="w"> </span>list
+</code></pre></div>
+</li>
+<li>
+<p>Send a twist message to cmd_vel topic</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cmd_vel<span class="w"> </span>geometry_msgs/Twist<span class="w"> </span><span class="s1">&#39;{linear:  {x: 0.2, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.0}}&#39;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also use <code>teleop_twist_keyboard</code> package to control the robot</p>
+</div>
+</li>
+</ol>
+<h2 id="exercise-3-run-hil-isaac-sim-nvblox">Exercise 3. Run HIL - Isaac Sim + Nvblox</h2>
+<p>Isaac ROS Nvblox provides ROS 2 packages for 3D reconstruction and navigation cost maps. It processes depth and pose data to create real-time 3D scene reconstructions and generates 2D costmaps for navigation, aiding in obstacle avoidance.</p>
+<p>Compatible with depth cameras and/or 3D LiDAR, it utilizes GPU acceleration for efficient computation, leveraging the nvblox C++ library for reconstruction and costmap generation.</p>
+<p>In a typical graph, <code>isaac_ros_nvblox</code> takes depth and color images along with pose data, computes a 3D scene reconstruction on the GPU, and generates an output cost map for navigation. Colorized 3D reconstruction updates can be visualized in RViz in real-time as well.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cheat-file</p>
+<p>You can access a pre-populated environment at <code>/home/nvidia/Desktop/Isaac_ROS_Isaac_SIM_[DLIT61534]/Isaac Sim Assets Pack 1/Assets/Isaac/2023.1.1/Isaac/Environments/Simple_Warehouse/course_env_6.usd</code></p>
+</div>
+<h3 id="modify-the-robots-action-graph">Modify the robot's Action Graph <span class="twemoji ubuntupurple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 6h16v10H4m16 2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4c-1.11 0-2 .89-2 2v10a2 2 0 0 0 2 2H0v2h24v-2h-4Z"/></svg></span></h3>
+<h4 id="drive-action-graph">Drive Action Graph</h4>
+<ol>
+<li>
+<p>Right click on the <code>drive_actiongraph</code> and open the Graph</p>
+<p><img alt="alt text" src="images/image-65.png" /></p>
+</li>
+<li>
+<p>Search the relevant Nodes in the search bar and build the graph shown below just below the Drive action graph.</p>
+<p>Connect the Exec In for each node to the On Playback Tick Node (which you may have created earlier when setting up the drive action graph) for all nodes not shown in this image.</p>
+<p><img alt="alt text" src="images/image-66.png" /></p>
+<h4 id="graph-explanation">Graph Explanation</h4>
+<ul>
+<li><a href="https://docs.omniverse.nvidia.com/extensions/latest/ext_omnigraph/node-library/nodes/omni-graph-action/onplaybacktick-1.html?highlight=On%20Playback%20Tick%20Node#on-playback-tick"><strong>On Playback Tick Node</strong></a>: Generates a tick during simulation playback, ensuring nodes execute their functions every simulation step.</li>
+<li><a href="https://docs.omniverse.nvidia.com/extensions/latest/ext_omnigraph/node-library/nodes/omni-isaac-core_nodes/isaaccomputeodometry-1.html?highlight=isaac%20odom#isaac-compute-odometry-node"><strong>Isaac Compute Odometry Node</strong></a>: Holds values related to odometry</li>
+<li><a href="https://docs.omniverse.nvidia.com/extensions/latest/ext_omnigraph/node-library/nodes/omni-isaac-ros2_bridge-humble/ros2publishrawtransformtree-1.html?highlight=ROS2%20Publish%20Raw%20Transform%20Tree#ros2-publish-raw-transform-tree"><strong>ROS2 Publish Raw Transform Tree</strong></a>: This node publishes a user-defined transformation between any two coordinate frames as a ROS2 Transform Tree</li>
+<li><a href="https://docs.omniverse.nvidia.com/extensions/latest/ext_omnigraph/node-library/nodes/omni-isaac-ros2_bridge-humble/ros2publishtransformtree-1.html?highlight=ROS2%20Publish%20Transform%20Tree#ros2-publish-transform-tree"><strong>ROS2 Publish Transform Tree</strong></a>: This node publishes the pose of prims as a ROS2 Transform Tree</li>
+<li><a href="https://docs.omniverse.nvidia.com/extensions/latest/ext_omnigraph/node-library/nodes/omni-isaac-ros2_bridge-humble/ros2publishodometry-1.html?highlight=ROS2%20Publish%20Odometry#ros2-publish-odometry"><strong>ROS2 Publish Odometry</strong></a>: This node publishes odometry as a ROS2 Odometry message</li>
+<li><a href="https://docs.omniverse.nvidia.com/extensions/latest/ext_omnigraph/node-library/nodes/omni-isaac-ros2_bridge-humble/ros2publishclock-1.html?highlight=ROS2%20Publish%20Clock#ros2-publish-clock"><strong>ROS2 Publish Clock</strong></a>: This node publishes the given time as a ROS2 Clock message</li>
+<li><a href="https://docs.omniverse.nvidia.com/extensions/latest/ext_omnigraph/node-library/nodes/omni-isaac-core_nodes/isaacreadsystemtime-1.html?highlight=Isaac%20Read%20Sim%20Time#isaac-read-system-time"><strong>Isaac Read Sim Time</strong></a>: Holds values related to system timestamps</li>
+</ul>
+</li>
+<li>
+<p>Set the node properties</p>
+<ol>
+<li>
+<p>Assign the chassisPrim to the base link of the robot to get the odometry reading using the <strong>Isaac Compute Odometry Node</strong>.</p>
+<p><img alt="alt text" src="images/image-67.png" />
+<img alt="alt text" src="images/image-68.png" />
+<img alt="alt text" src="images/image-69.png" /></p>
+</li>
+<li>
+<p>[Optional] If your chassisprim is different from base_link then update the chassisFramId in the <strong>ROS2 Publish Odometry Node</strong>. In our example we do not need to change it.</p>
+<p><img alt="alt text" src="images/image-70.png" /></p>
+</li>
+<li>
+<p>[Optional] If your chassisprim is different from base_link then update the <strong>ChildFramId</strong> in the <strong>ROS2 Publish Raw Transform Tree Node</strong>. In our example we do not need to change it.</p>
+<p><img alt="alt text" src="images/image-71.png" /></p>
+</li>
+<li>
+<p>Publish the base_link transform by selecting base_link as both parentPrim and targetPrim in the <strong>ROS2 Publish Transform Tree Node</strong>. How to assign a prim has already been shown in Step 3a above.</p>
+<p><img alt="alt text" src="images/image-71.png" /></p>
+</li>
+<li>
+<p>Publish the base_link transform to both cameras by selecting base_link as parentPrim and <code>Camera_OmniVision_OV9782_Left</code> and <code>Camera_OmniVision_OV9782_Right</code> as targetPrims in the other<strong> ROS2 Publish Transform Tree Node</strong>. How to assign a prim has already been shown in the step above.</p>
+<p><img alt="alt text" src="images/image-72.png" /></p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="camera-publisher-action-graph">Camera Publisher Action Graph</h4>
+<ol>
+<li>
+<p>Right click on the camera_publisher action graph and select "<strong>Open Graph</strong>"</p>
+<p><img alt="alt text" src="images/image-73.png" /></p>
+</li>
+<li>
+<p>Search the relevant Nodes in the search bar and build the graph shown below just below the original camera publisher graph.</p>
+<p>We just need to add two more <strong>ROS2 Camera Helper</strong> nodes to publish the depth image from the camera.</p>
+<p><img alt="alt text" src="images/image-74.png" /></p>
+<h4 id="graph-explanation_1">Graph Explanation</h4>
+<ul>
+<li><a href="https://docs.omniverse.nvidia.com/extensions/latest/ext_omnigraph/node-library/nodes/omni-isaac-ros2_bridge-humble/ros2camerahelper-2.html?highlight=ROS2%20Camera%20Helper#ros2-camera-helper"><strong>ROS2 Camera Helper</strong></a>: This node handles automation of the camera sensor pipeline</li>
+</ul>
+</li>
+<li>
+<p>Set the node properties</p>
+<ol>
+<li>
+<p>Set the topicName and data type for the new ROS2 Camera Helper Nodes</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">node 1</label><label for="__tabbed_1_2">node 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>topicName : <code>/front/stereo_camera/left/depth</code>
+type : <code>depth</code></p>
+<p><img alt="alt text" src="images/image-75.png" /></p>
+</div>
+<div class="tabbed-block">
+<p>topicName : <code>/front/stereo_camera/right/depth</code>
+type : <code>depth</code></p>
+<p><img alt="alt text" src="images/image-76.png" /></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Enable "<strong>Reset Time on Stop</strong>" for all the 6 ROS2 Camera Helper Nodes</p>
+<p><img alt="alt text" src="images/image-77.png" /></p>
+</li>
+</ol>
+</li>
+<li>
+<p>After making the specified modifications to the graphs, click the "<strong>Play</strong>" button to start the simulation.</p>
+</li>
+</ol>
+<h3 id="launch-nvblox-on-jetson">Launch Nvblox on Jetson <span class="twemoji nvgreen"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 9V7h-2V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2h2v-2h-2v-2h2v-2h-2V9h2m-4 10H4V5h14v14M6 13h5v4H6v-4m6-6h4v3h-4V7M6 7h5v5H6V7m6 4h4v6h-4v-6Z"/></svg></span></h3>
+<div class="admonition note">
+<p><span class="twemoji book-blue-note"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M96 0C43 0 0 43 0 96v320c0 53 43 96 96 96h320c17.7 0 32-14.3 32-32s-14.3-32-32-32v-64c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H96zm0 384h256v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg></span> <em>Isaac ROS Official Documentation - <a href="https://nvidia-isaac-ros.github.io/repositories_and_packages/isaac_ros_nvblox/index.html"><strong>Isaac ROS Nvblox</strong></a></em></p>
+</div>
+<ol>
+<li>
+<p>Ensure that you have established a ROS 2 workspace for experimenting with Isaac ROS, and set the <code>ISAAC_ROS_WS</code> environmental variable to point to your ROS 2 workspace directory, following the initial setup instructions for Isaac ROS previously mentioned - <a href="https://nvidia-isaac-ros.github.io/getting_started/dev_env_setup.html">Link</a></p>
+</li>
+<li>
+<p>Launch the Docker container using the run_dev.sh script:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">ISAAC_ROS_WS</span><span class="si">}</span>/src/isaac_ros_common<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+./scripts/run_dev.sh<span class="w"> </span><span class="si">${</span><span class="nv">ISAAC_ROS_WS</span><span class="si">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>Once inside the container, source the workspace:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>/workspaces/isaac_ros-dev/install/setup.bash
+</code></pre></div>
+</li>
+<li>
+<p>Launch the pre-composed graph launch file:</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>nvblox_examples_bringup<span class="w"> </span>isaac_sim_example.launch.py
+</code></pre></div>
+<p>This command will open an RViz window for visualizing the output.</p>
+<p><img alt="alt text" src="images/image-78.png" /></p>
+</li>
+<li>
+<p>Click the "<strong>2D Goal Pose</strong>" button in RViz and set a goal location and heading for your robot. You'll observe the mesh, costmap, and the robot navigating towards the goal.</p>
+<p><img alt="alt text" src="images/image-79.png" /></p>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you see the robot moving very slowly then try to play with the <strong>maxLinearSpeed</strong> in <strong>Speed Differential Controller Node</strong></p>
+<p><img alt="alt text" src="images/image-80.png" /></p>
+</div>
+<p><a class="md-button md-button--primary" href="nextgen-ai.html">Next</a></p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="isaac-ros.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2. Isaac ROS">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                2. Isaac ROS
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="nextgen-ai.html" class="md-footer__link md-footer__link--next" aria-label="Next: 4. Next-gen AI Integration">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                4. Next-gen AI Integration
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.indexes", "navigation.footer", "content.tabs.link", "content.code.copy", "announce.dismiss"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+<script src="//assets.adobedtm.com/5d4962a43b79/814eb6e9b4e1/launch-4bc07f1e0b0b.min.js"></script>
+
+      <script src="assets/javascripts/bundle.bd41221c.min.js"></script>
+      
+    
+<script>
+  window._6si = window._6si || [];
+  window._6si.push(['enableEventTracking', true]);
+  window._6si.push(['setToken', 'eb417ec30d332e34d732e2916f185311']);
+  window._6si.push(['setEndpoint', 'b.6sc.co']);
+  window._6si.push(['enableRetargeting', false]); 
+
+  window._6si.push(['enableCompanyDetails', true]);
+  window._6si.push(['setEpsilonKey', '6f578ba72568231347d1bddb7102e53695302c28']);
+
+  (function() {
+    var gd = document.createElement('script');
+    gd.type = 'text/javascript';
+    gd.async = true;
+    gd.src = '//j.6sc.co/6si.min.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gd, s);
+  })();
+</script>
+<script type="text/javascript">_satellite.pageBottom();</script>
+
+  </body>
+</html>
